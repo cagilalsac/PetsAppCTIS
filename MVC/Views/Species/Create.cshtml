@@ -1,0 +1,50 @@
+﻿@model SpeciesModel
+@*Generated from Custom Template.*@
+@*Model namespace using directive should be added to _ViewImports.cshtml.*@
+
+@{
+    ViewData["Title"] = "Create Species";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@* Way 1 or 2: *@
+@* ViewData["ViewMessage"] = ViewBag.ViewMessage *@
+@* @if (ViewData["ViewMessage"] is not null)
+{
+    <p class="text-danger">@ViewData["ViewMessage"]</p>
+} *@
+
+<h4>Species</h4>
+<hr />
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Create">
+            @Html.AntiForgeryToken()
+
+            @* Way 3: *@
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="row mb-3">
+                <label asp-for="Name" class="col-2 col-form-label"></label>
+                <div class="col-5">
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="offset-2 col-5">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    &nbsp;&nbsp;
+                    <button type="reset" class="btn btn-outline-primary">Reset</button>
+                    &nbsp;&nbsp;
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
