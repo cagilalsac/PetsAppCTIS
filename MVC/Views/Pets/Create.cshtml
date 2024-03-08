@@ -1,0 +1,104 @@
+﻿@model PetModel
+@*Generated from Custom Template.*@
+@*Model namespace using directive should be added to _ViewImports.cshtml.*@
+
+@{
+    ViewData["Title"] = "Create Pet";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Pet</h4>
+<hr />
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Create" autocomplete="off">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="row mb-3">
+                <label asp-for="Name" class="col-2 col-form-label"></label>
+                <div class="col-5">
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="Sex" class="col-2 col-form-label"></label>
+                <div class="col-5">
+                    <select asp-for="Sex" class="form-select">
+                        <option value="@((int)Sex.Female)">@Sex.Female</option>
+                        <option value="@((int)Sex.Male)">@Sex.Male</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="BirthDate" class="col-2 col-form-label"></label>
+                <div class="col-5">
+                    <input asp-for="BirthDate" class="form-control datetimepicker" type="text" />
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="IsAdopted" class="col-2 col-form-label"></label>
+                <div class="col-5" style="padding-top: 7px;">
+                    <input class="form-check-input" asp-for="IsAdopted" />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="Height" class="col-2 col-form-label"></label>
+                <div class="col-5">
+                    <input asp-for="Height" class="form-control" placeholder="Enter in meters..." />
+                    <span asp-validation-for="Height" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="Weight" class="col-2 col-form-label"></label>
+                <div class="col-5">
+                    <input asp-for="Weight" class="form-control" placeholder="Enter in kilograms..." />
+                    <span asp-validation-for="Weight" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="SpeciesId" class="col-2 col-form-label"></label>
+                <div class="col-5">
+                    <select asp-for="SpeciesId" class="form-select" asp-items="ViewBag.SpeciesId">
+                        <option value="">-- Select --</option>
+                    </select>
+                    <span asp-validation-for="SpeciesId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="offset-2 col-5">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    &nbsp;&nbsp;
+                    <button type="reset" class="btn btn-outline-primary">Reset</button>
+                    &nbsp;&nbsp;
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @* https://xdsoft.net/jqplugins/datetimepicker/ *@
+    <link href="~/lib/jquery-datetimepicker/jquery.datetimepicker.min.css" rel="stylesheet" />
+    <script src="~/lib/jquery-datetimepicker/jquery.datetimepicker.full.min.js"></script>
+
+    <script>
+        $(function () { // after the HTML DOM is loaded
+            // convert the input with class datetimepicker to JS-CSS jQuery DateTimePicker
+            // Way 1:
+            // $(".datetimepicker").datetimepicker();
+            // Way 2:
+            $(".datetimepicker").datetimepicker({
+                //format: 'm/d/Y H:i:s', // month/day/year hour:minute:second format
+                format: 'm/d/Y',
+
+                timepicker: false // don't show the time component
+            });
+        });
+    </script>
+}
+
+

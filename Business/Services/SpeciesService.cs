@@ -29,9 +29,11 @@ namespace Business.Services
         {
             return _db.Species.Include(s => s.Pets).OrderBy(s => s.Name).Select(s => new SpeciesModel()
             {
+                // entity properties
                 Id = s.Id,
                 Name = s.Name,
 
+                // extra properties
                 PetCountOutput = s.Pets.Count,
                 PetNamesOutput = string.Join("<br />", s.Pets.OrderByDescending(p => p.IsAdopted).ThenByDescending(p => p.BirthDate).ThenBy(p => p.Name).Select(p => p.Name))
             });

@@ -10,6 +10,7 @@ string connectionString = builder.Configuration.GetConnectionString("DefaultConn
 builder.Services.AddDbContext<Db>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<ISpeciesService, SpeciesService>();
+builder.Services.AddScoped<IPetService, PetService>();
 #endregion
 
 builder.Services.AddControllersWithViews();
